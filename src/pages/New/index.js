@@ -18,44 +18,14 @@ export default function New() {
 
     useEffect(() => {
         async function loadClientes() {
-            await firebase.firestore().collection('costumers')
-                .get()
-                .then((snapshot) => {
-                    let lista = [];
-                    snapshot.forEach((doc) => {
-                        lista.push({
-                            id: doc.id,
-                            nome: doc.data().nome
-                        });
-                    });
-                    setClientes(lista);
-                    setLoadingClientes(false);
-                })
-                .catch(() => {
-                    setClientes([{ id: 1, nome: "Sem cliente" }]);
-                    setLoadingClientes(false);
-                    toast.error('Erro');
-                })
+          
         }
         loadClientes();
     }, []);
 
     async function handleChamado(e) {
         e.preventDefault();
-        let chamado={
-            cliente:clientes[clienteSelecionado].id,
-            assunto: assunto,
-            status:status,
-            complemento:complemento
-        };
-        await firebase.firestore().collection('chamados')
-        .add(chamado)
-        .then(()=>{
-            toast.success('Chamado cadastrado com sucesso');
-        })
-        .catch(()=>{
-            toast.error('Ops!');
-        }) 
+       
     }
 
     return (

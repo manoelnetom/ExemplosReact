@@ -6,12 +6,12 @@ function SignUp() {
     const [nome, setNome]=useState('');
     const [email, setEmail]=useState('');
     const [senha, setSenha]=useState('');
-    const {signUp, loading}=useContext(AuthContext);
+    //const {signUp, loading}=useContext(AuthContext);
     
     function handleSubmit(e){
       e.preventDefault();
-      if(email!==''&&senha!==''&&nome!=='')
-        signUp(email, senha, nome);
+     // if(email!==''&&senha!==''&&nome!=='')
+      //  signUp(email, senha, nome);
     }
 
     return (

@@ -19,71 +19,17 @@ export default function Profile(){
 
 
 function handleFile(e){
-  const image = e.target.files[0];
-  if(image && (image.type==='image/jpeg'||image.type==='image/png')){
-    setImageAvatar(image);
-    setAvatarUrl(URL.createObjectURL(image));
-  }else{
-    toast.warning('Selecione uma imagem (png ou jpeg');
-    setImageAvatar(null);
-  }
+  
 }
 
  async function handleSave(e){
     e.preventDefault();
-    if(imageAvatar===null&&nome!==''){
-      //só quer salvar o nome e não a imagem
-      await firebase.firestore().collection('users')
-      .doc(user.uid)
-      .update({
-        nome:nome
-      })
-      .then(()=>{
-        let data={
-          ...user,
-          nome:nome
-        }
-        setUser(data);
-        setLocalUser(data);
-        toast.success('Profile Atualizado!');
-      })
-      .catch((error)=>{
-        toast.error('Ops Erro!');
-      })
-    }else if(imageAvatar!==null&&nome!==''){
-      handleUpload();
-    }
+   
  
   }
 
   async function handleUpload(){
-   const currentUid =  user.uid;
-   const uploadTask = await firebase.storage()
-   .ref(`images/${currentUid}/${imageAvatar.name}`)
-   .put(imageAvatar)
-   .then(async ()=>{
-     toast.success('Foto enviada com sucesso');
-     await firebase.storage()
-     .ref(`images/${currentUid}`)
-     .child(imageAvatar.name).getDownloadURL()
-     .then( async(url)=>{
-       await firebase.firestore().collection('users')
-       .doc(currentUid)
-       .update({
-         avatarUrl:url,
-         nome:nome
-       })
-       .then(()=>{
-         let data ={
-           ...user,
-           nome:nome,
-           avatarUrl:url
-         }
-         setUser(data);
-         setLocalUser(data);
-       })
-     })
-   })
+   
   }
   return(
     <div>
