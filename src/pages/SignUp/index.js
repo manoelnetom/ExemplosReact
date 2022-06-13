@@ -27,7 +27,7 @@ function SignUp() {
             <input type="text" value={nome} placeholder="Seu nome"  onChange={(e)=>{setNome(e.target.value)}} />
             <input type="text" value={email} placeholder="email@email.com"  onChange={(e)=>{setEmail(e.target.value)}} />
             <input type="password" value={senha} placeholder="*****" onChange={(e)=>{setSenha(e.target.value)}}/>
-            <button type="submit">{loading?'Carregando....':'Cadastrar'}</button>
+            <button type="submit">Cadastrar</button>
           </form>
          
           <Link to="/">Já possui uma conta? Entre aqui!</Link>
